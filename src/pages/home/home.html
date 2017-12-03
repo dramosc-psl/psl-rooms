@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      PSL Rooms
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-list *ngFor="let room of roomsList">
+     <ion-item>
+      <h2>{{room.name}}</h2>
+      <p>{{room.asientos}}</p>
+      <p>{{room.fechaLimpieza}}</p>
+      <p>{{room.imagen}}</p>
+      <p>{{room.ocupada}}</p>
+      <p>{{room.ubicacion}}</p>
+     </ion-item>
+   </ion-list>
+</ion-content>

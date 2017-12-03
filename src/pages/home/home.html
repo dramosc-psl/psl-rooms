@@ -1,21 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      PSL Rooms
+      SALAS PSL
     </ion-title>
+    <ion-buttons right>
+        <button ion-button icon-only (click)="newRoom()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
    <ion-list *ngFor="let room of roomsList">
      <ion-item>
-      <h2>{{room.name}}</h2>
-      <p>{{room.asientos}}</p>
-      <p>{{room.fechaLimpieza}}</p>
-      <p>{{room.imagen}}</p>
-      <p>{{room.ocupada}}</p>
-      <p>{{room.ubicacion}}</p>
-      <button ion-button item-end (click)="showRoom(room.name)">Show Room</button>
+      <img src="{{room.imagen}}">
+      <h2>SALA {{room.name.toUpperCase()}}</h2>
+      <p>{{room.asientos}} asientos</p>
+      <p>Limpiada el {{room.fechaLimpieza}}</p>
+      <p>Ubicada en el piso {{room.ubicacion}}</p>
+      <p>La sala está {{room.ocupada ? 'ocupada' : 'desocupada'}}</p>
+      <button ion-button item-end (click)="showRoom(room.name)">Ver Sala</button>
      </ion-item>
    </ion-list>
 </ion-content>

@@ -24,6 +24,10 @@ export class HomePage {
     this.navCtrl.push(RoomPage, name);
   }
 
+  newRoom() {
+    this.navCtrl.push(RoomPage);
+  }
+
   getRooms() {
     this.roomsList = [];
     let loader = this.loadingCtrl.create({

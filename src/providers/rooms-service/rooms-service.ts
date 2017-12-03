@@ -25,20 +25,34 @@ export class RoomsService {
   deleteRoom(name) {
     return new Promise(resolve => {
       this.http.delete(`${this.baseUrl}/rooms/${name}.json`)
-      .subscribe(res => resolve(res.json()))
+      .subscribe(res => resolve(res.json()));
     });
   }
 
   updateRoom(name, newProps) {
+    console.log(name, newProps);
     return new Promise(resolve => {
       this.http.patch(`${this.baseUrl}/rooms/${name}.json`, JSON.stringify(newProps))
+      .subscribe(res => resolve(res.json()));
     });
   }
 
-  createRoom(props) {
-    return new Promise (resolve => {
-      this.http.post(`${this.baseUrl}/rooms.json`, JSON.stringify(props))
+  createRoom(name, newProps) {
+    console.log(name, newProps);
+    return new Promise(resolve => {
+      this.http.patch(`${this.baseUrl}/rooms/${name}.json`, JSON.stringify(newProps))
+      .subscribe(res => resolve(res.json()));
     });
   }
+
+  // createRoom(props) {
+  //   const name = props.name;
+  //   const room = Object.assign(props);
+  //   delete room[name];
+  //   return new Promise (resolve => {
+  //     this.http.post(`${this.baseUrl}/rooms/${name}.json`, JSON.stringify(room))
+  //     .subscribe(res => resolve(res.json()));
+  //   });
+  // }
 
 }

@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
+import { RoomPageModule } from '../pages/room/room.module';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RoomsService } from '../providers/rooms-service/rooms-service';
@@ -17,6 +19,7 @@ import { RoomsService } from '../providers/rooms-service/rooms-service';
   imports: [
     BrowserModule,
     HttpModule,
+    RoomPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

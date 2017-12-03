@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { RoomsService } from '../../providers/rooms-service/rooms-service';
+import { RoomPage } from '../room/room';
 
 @Component({
   selector: 'page-home',
@@ -17,6 +18,10 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.getRooms();
+  }
+
+  showRoom(name) {
+    this.navCtrl.push(RoomPage, name);
   }
 
   getRooms() {

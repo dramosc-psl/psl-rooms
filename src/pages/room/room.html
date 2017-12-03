@@ -6,17 +6,49 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>PSL Room</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<p>{{room.asientos}}</p>
-<p>{{room.fechaLimpieza}}</p>
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="{{room.imagen}}" (click)="selectImage()">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ocupada?</ion-label>
+    </ion-item>
+    <ion-list radio-group [(ngModel)]="room.ocupada">
+        <ion-item>
+          <ion-label>Si</ion-label>
+          <ion-radio value="true"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>No</ion-label>
+          <ion-radio value="false"></ion-radio>
+        </ion-item>
+      </ion-list>
+     <ion-item>
+      <ion-label>Fecha de Limpieza</ion-label>
+      <ion-input [(ngModel)]="room.fechaLimpieza" type="date" placeholder="Fecha de Limpieza"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Asientos</ion-label>
+      <ion-input [(ngModel)]="room.asientos" type="number" placeholder="Asientos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Ubicación</ion-label>
+      <ion-select [(ngModel)]="room.ubicacion">
+          <ion-option *ngFor="let floor of floors" value="{{floor}}">Piso {{floor}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+  </ion-list>
+
 <p>{{room.imagen}}</p>
-<p>{{room.ocupada}}</p>
-<p>{{room.ubicacion}}</p>
 </ion-content>

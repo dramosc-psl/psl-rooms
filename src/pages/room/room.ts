@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { RoomsService } from '../../providers/rooms-service/rooms-service';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ImagePicker } from '@ionic-native/image-picker';
 
 @IonicPage()
 @Component({
@@ -15,20 +9,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'room.html',
 })
 export class RoomPage {
+  floors: number[];
   room: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public roomsService: RoomsService) {
+  pageTitle: string;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public roomsService: RoomsService,
+              public imagePicker: ImagePicker) {
+    this.pageTitle = 'SALA ';
     this.room = {};
+    this.floors = [1,2,3,4];
   }
 
 
   showRoom(name) {
     this.roomsService.getRoom(name).then(room => {
-      this.room = room;
+      this.pageTitle += this.room.name.toUpperCase();
+      this.room = Object.assign(this.room, room);
+    });
+  }
+
+  selectImage() {
+    this.imagePicker.getPictures({maximumImagesCount:1}).then((results) => {
+      for(let i =0; i < results.length; i++) {
+        this.room.image = results[i];
+      }
+    }, (err) => {
+      console.log(err)
     });
   }
 
   ionViewDidLoad() {
-    this.showRoom(this.navParams.data);
+    this.room.name = this.navParams.data;
+    this.showRoom(this.room.name);
   }
 
 }

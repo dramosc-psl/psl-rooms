@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 import { RoomPageModule } from '../pages/room/room.module';
 
@@ -31,7 +32,8 @@ import { RoomsService } from '../providers/rooms-service/rooms-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RoomsService
+    RoomsService,
+    ImagePicker
   ]
 })
 export class AppModule {}

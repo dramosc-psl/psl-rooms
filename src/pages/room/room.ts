@@ -38,12 +38,14 @@ export class RoomPage {
   }
 
   selectImage() {
-    this.imagePicker.getPictures({maximumImagesCount:1}).then((results) => {
-      for(let i =0; i < results.length; i++) {
-        this.room.image = results[i];
+    this.imagePicker.requestReadPermission().then((res) => {
+      if(res === 'OK') {
+        this.imagePicker.getPictures({maximumImagesCount:1}).then((results) => {
+          for(let i =0; i < results.length; i++) {
+            this.room.imagen = results[i];
+          }
+        });
       }
-    }, (err) => {
-      console.log(err)
     });
   }
 
@@ -60,7 +62,7 @@ export class RoomPage {
         }]
       });
       alert.present();
-    })
+    });
   }
 
   updateRoom() {

@@ -12,6 +12,7 @@
 </ion-header>
 
 <ion-content padding>
+   
    <ion-list *ngFor="let room of roomsList">
       <ion-item-sliding #item>
      <ion-item>
@@ -21,7 +22,6 @@
       <p>Limpiada el {{room.fechaLimpieza}}</p>
       <p>Ubicada en el piso {{room.ubicacion}}</p>
       <p>La sala está {{room.ocupada ? 'ocupada' : 'desocupada'}}</p>
-      <!-- <button ion-button item-end (click)="showRoom(room.name)">Ver Sala</button> -->
      </ion-item>
      <ion-item-options>
         <button ion-button color="warning" (click)="showRoom(room.name)">

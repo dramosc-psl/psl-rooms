@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons right>
         <button ion-button icon-only (click)="newRoom()">
-          <ion-icon name="add"></ion-icon>
+          <ion-icon name="add-circle"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
@@ -13,6 +13,7 @@
 
 <ion-content padding>
    <ion-list *ngFor="let room of roomsList">
+      <ion-item-sliding #item>
      <ion-item>
       <img src="{{room.imagen}}">
       <h2>SALA {{room.name.toUpperCase()}}</h2>
@@ -20,7 +21,16 @@
       <p>Limpiada el {{room.fechaLimpieza}}</p>
       <p>Ubicada en el piso {{room.ubicacion}}</p>
       <p>La sala está {{room.ocupada ? 'ocupada' : 'desocupada'}}</p>
-      <button ion-button item-end (click)="showRoom(room.name)">Ver Sala</button>
+      <!-- <button ion-button item-end (click)="showRoom(room.name)">Ver Sala</button> -->
      </ion-item>
+     <ion-item-options>
+        <button ion-button color="warning" (click)="showRoom(room.name)">
+            <ion-icon name="open"></ion-icon>
+          </button>
+       <button ion-button color="danger" (click)="deleteRoom(room.name)">
+         <ion-icon name="trash"></ion-icon>
+       </button>
+     </ion-item-options>
+    </ion-item-sliding>
    </ion-list>
 </ion-content>

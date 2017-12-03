@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { RoomsService } from '../../providers/rooms-service/rooms-service';
 import { RoomPage } from '../room/room';
 
@@ -13,7 +13,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               public loadingCtrl: LoadingController,
-              public roomsService: RoomsService) {
+              public roomsService: RoomsService,
+              public alert: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -26,6 +27,25 @@ export class HomePage {
 
   newRoom() {
     this.navCtrl.push(RoomPage);
+  }
+
+  deleteRoom(name) {
+    let alert = this.alert.create({
+      title: `Eliminar ${name}?`,
+      message: 'Está seguro?',
+      buttons: [{
+        text: 'Aceptar',
+        handler: () => {
+          this.roomsService.deleteRoom(name).then(data => {
+            this.getRooms();
+          });
+        }
+      }, {
+        text: 'Cancelar',
+        role: 'cancel'
+      }]
+    });
+    alert.present();
   }
 
   getRooms() {
